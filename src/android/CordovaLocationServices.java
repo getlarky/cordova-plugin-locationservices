@@ -107,7 +107,7 @@ public class CordovaLocationServices extends CordovaPlugin implements
 		final long fastInterval = args.optLong(4, LocationUtils.FAST_INTERVAL_CEILING_IN_MILLISECONDS);
 
 		if (action.equals("clearWatch")) {
-			clearWatch(id);
+			clearWatch(id, callbackContext);
 			return true;
 		}
 
@@ -274,8 +274,9 @@ public class CordovaLocationServices extends CordovaPlugin implements
 		mWantLastLocation = true;
 	}
 
-	private void clearWatch(String id) {
+	private void clearWatch(String id, CallbackContext callbackContext) {
 		getListener().clearWatch(id);
+		callbackContext.success();
 	}
 
 	private void getCurrentLocation(CallbackContext callbackContext, int timeout) {
