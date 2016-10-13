@@ -223,11 +223,11 @@ var LocationServices = {
 	 *
 	 * @param {String} id       The ID of the watch returned from #watchPosition
 	 */
-	clearWatch: function (id) {
+	clearWatch: function (successCallback, errorCallback, id) {
 		if (id && timers[id] !== undefined) {
 			clearTimeout(timers[id].timer);
 			timers[id].timer = false;
-			exec(null, null, "LocationServices", "clearWatch", [id]);
+			exec(successCallback, errorCallback, "LocationServices", "clearWatch", [id]);
 		}
 	}
 };
